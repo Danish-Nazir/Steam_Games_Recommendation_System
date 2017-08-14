@@ -379,4 +379,30 @@ return game, genre, r
 
 //graph_result
 
+== Action
 
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/19356b55aa4ec40f1d68227bc2f4dee8a82deac7/games_genre_action.csv"
+as rels
+match (game:Game {AAAName: rels.name}), (genre:Genre {game_genre: rels.Genre})
+create (game)-[r:IS]->(genre)
+return game, genre, r
+----
+
+//graph_result
+
+== Adventure
+
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/19356b55aa4ec40f1d68227bc2f4dee8a82deac7/games_genre_adventure.csv"
+as rels
+match (game:Game {AAAName: rels.name}), (genre:Genre {game_genre: rels.Genre})
+create (game)-[r:IS]->(genre)
+return game, genre, r
+----
+
+//graph_result
