@@ -1,0 +1,29 @@
+= Neo4J Graph Database of Steam Games
+:neo4j-version: 3.2.1
+:author: Noor ul ain Arain
+:twitter: @_Nunoo_
+:style: red:Person(name)
+
+== Introduction
+
+As a game developer I am very interested in game data that steam produces.
+
+Valves reports that there are https://www.geekwire.com/2017/valve-reveals-steams-monthly-active-user-count-game-sales-region/[33 million] daily active players on Steam.
+
+
+
+== Dataset
+The Dataset has been uploaded by https://data.world/craigkelly/steam-game-data[Craig Kelly] on https://data.world[Data.World]. Go follow Craig Kelly on his https://twitter.com/binarydolphin[Twitter].
+
+removing rows that had duplicates ids
+
+Initially the database contains 13357 rows and 78 columns but after some cleaning in Rapidminer the data that remained is 9947 games with 33 columns. The coulumns that we choose are below:
+
+
+
+
+== Graph
+
+== Recommendation Queries
+
+== Conclusion
