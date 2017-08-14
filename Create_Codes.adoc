@@ -184,10 +184,12 @@ return r, game, category
 load csv with headers from
 "https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_platform_Windows.csv"
 as rels
-match (game:Game {Name: rels.name}), (plaftform:Platform {game_platform: rels.Windows})
-create (game)<-[:SUPPORTS]-(plaftform)
-return game, plaftform
+match (game:Game {AAAName: rels.name}), (plaftform:Platform {game_platform: rels.Windows})
+create (game)<-[r:SUPPORTS]-(plaftform)
+return game, plaftform, r
 ----
+
+//graph_result
 
 == Linux
 [source,cypher]
@@ -195,10 +197,12 @@ return game, plaftform
 load csv with headers from
 "https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_platform_Linux.csv"
 as rels
-match (game:Game {Name: rels.name}), (plaftform:Platform {game_platform: rels.Linux})
-create (game)<-[:SUPPORTS]-(plaftform)
-return game, plaftform
+match (game:Game {AAAName: rels.name}), (plaftform:Platform {game_platform: rels.Linux})
+create (game)<-[r:SUPPORTS]-(plaftform)
+return game, plaftform, r
 ----
+
+//graph_result
 
 == Mac
 [source,cypher]
@@ -206,11 +210,173 @@ return game, plaftform
 load csv with headers from
 "https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_platform_Mac.csv"
 as rels
-match (game:Game {Name: rels.name}), (plaftform:Platform {game_platform: rels.Mac})
-create (game)<-[:SUPPORTS]-(plaftform)
-return game, plaftform
+match (game:Game {AAAName: rels.name}), (plaftform:Platform {game_platform: rels.Mac})
+create (game)<-[r:SUPPORTS]-(plaftform)
+return game, plaftform, r
 ----
 
-= Creating Genere Relationship
+//graph_result
 
-== 
+= Creating Genre Relationship
+
+== Casual
+
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_genre_casual.csv"
+as rels
+match (game:Game {AAAName: rels.name}), (genre:Genre {game_genre: rels.Genre})
+create (game)-[r:IS]->(genre)
+return game, genre, r
+----
+
+//graph_result
+
+== Early Access
+
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_genre_EarlyAccess.csv"
+as rels
+match (game:Game {AAAName: rels.name}), (genre:Genre {game_genre: rels.Genre})
+create (game)-[r:IS]->(genre)
+return game, genre, r
+----
+
+//graph_result
+
+== Free to Play
+
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_genre_FreetoPlay.csv"
+as rels
+match (game:Game {AAAName: rels.name}), (genre:Genre {game_genre: rels.Genre})
+create (game)-[r:IS]->(genre)
+return game, genre, r
+----
+
+//graph_result
+
+== Indie
+
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_genre_Indie.csv"
+as rels
+match (game:Game {AAAName: rels.name}), (genre:Genre {game_genre: rels.Genre})
+create (game)-[r:IS]->(genre)
+return game, genre, r
+----
+
+//graph_result
+
+== Massively Multiplayer
+
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_genre_MM.csv"
+as rels
+match (game:Game {AAAName: rels.name}), (genre:Genre {game_genre: rels.Genre})
+create (game)-[r:IS]->(genre)
+return game, genre, r
+----
+
+//graph_result
+
+
+== Non-Game
+
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_genre_NonGame.csv"
+as rels
+match (game:Game {AAAName: rels.name}), (genre:Genre {game_genre: rels.Genre})
+create (game)-[r:IS]->(genre)
+return game, genre, r
+----
+
+//graph_result
+
+
+== Racing
+
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_genre_race.csv"
+as rels
+match (game:Game {AAAName: rels.name}), (genre:Genre {game_genre: rels.Genre})
+create (game)-[r:IS]->(genre)
+return game, genre, r
+----
+
+//graph_result
+
+
+== Role Playing
+
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_genre_RPG.csv"
+as rels
+match (game:Game {AAAName: rels.name}), (genre:Genre {game_genre: rels.Genre})
+create (game)-[r:IS]->(genre)
+return game, genre, r
+----
+
+//graph_result
+
+
+== Simulation
+
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_genre_Simulation.csv"
+as rels
+match (game:Game {AAAName: rels.name}), (genre:Genre {game_genre: rels.Genre})
+create (game)-[r:IS]->(genre)
+return game, genre, r
+----
+
+//graph_result
+
+
+== Sports
+
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_genre_sports.csv"
+as rels
+match (game:Game {AAAName: rels.name}), (genre:Genre {game_genre: rels.Genre})
+create (game)-[r:IS]->(genre)
+return game, genre, r
+----
+
+//graph_result
+
+
+== Strategy
+
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_genre_Strategy.csv"
+as rels
+match (game:Game {AAAName: rels.name}), (genre:Genre {game_genre: rels.Genre})
+create (game)-[r:IS]->(genre)
+return game, genre, r
+----
+
+//graph_result
+
+
