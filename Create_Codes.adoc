@@ -1,0 +1,216 @@
+= Create Script
+
+== Yes I have set a property as AAAName because it displays About_Text property instead of Name , it's alphabetical
+
+= Creating Nodes
+== Game Nodes
+[source,cypher]
+----
+load csv with headers from 
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/4f0adff0d41474af4344c0b53a5295a8b1f36270/games_100_nodes.csv"
+as nodes 
+create (n:Game { Release_Date: nodes.releasedate, Price:nodes.pricefinal, Recomm_Count: nodes.recommendationcount, About_Text: nodes.abouttext, Back_G: nodes.background, AAAName: nodes.name})
+return n limit 100
+----
+
+//graph
+== Category Nodes
+[source,cypher]
+----
+load csv with headers from 
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/Catagory_nodes.csv"
+as nodes 
+create (n:Category {Category: nodes.category})
+return n
+----
+
+//graph
+== Genre Nodes
+[source,cypher]
+----
+load csv with headers from 
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/Genre_Nodes.csv"
+as nodes 
+create (n:Genre {game_genre: nodes.Genre})
+return n
+----
+
+//graph
+== Platform Nodes
+[source,cypher]
+----
+load csv with headers from 
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/Platform_Nodes.csv"
+as nodes 
+create (n:Platform {game_platform: nodes.Platform})
+return n
+----
+
+//graph
+== Price Nodes
+[source,cypher]
+----
+load csv with headers from 
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/Price_Nodes.csv"
+as nodes 
+create (n:Price {Price_Type: nodes.pricecurrency, Price: nodes.pricefinal})
+return n
+----
+
+//graph
+
+= Creating Category Relationship
+
+== Controller Support Category
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_categories_Controller_Support.csv"
+as rels
+match (game:Game {AAAName: rels.name}), (category:Category {Category: rels.category})
+create (game)-[r:HAS]->(category)
+return r, game, category
+----
+
+//graph_result
+== Coop Category
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_categories_coop"
+as rels
+match (game:Game {AAAName: rels.name}), (category:Category {Category: rels.category})
+create (game)-[r:HAS]->(category)
+return r, game, category
+----
+
+//graph_result
+== In App Category
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_categories_inapp.csv"
+as rels
+match (game:Game {AAAName: rels.name}), (category:Category {Category: rels.category})
+create (game)-[r:HAS]->(category)
+return r, game, category
+----
+
+//graph_result
+
+== Level Editor Category
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_categories_leveleditor.csv"
+as rels
+match (game:Game {AAAName: rels.name}), (category:Category {Category: rels.category})
+create (game)-[r:HAS]->(category)
+return r, game, category
+----
+
+//graph_result
+
+== MMO Category
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_categories_MMO.csv"
+as rels
+match (game:Game {AAAName: rels.name}), (category:Category {Category: rels.category})
+create (game)-[r:HAS]->(category)
+return r, game, category
+----
+
+//graph_result
+
+== Includes RC SDK Category
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_categories_RCSDK.csv"
+as rels
+match (game:Game {AAAName: rels.name}), (category:Category {Category: rels.category})
+create (game)-[r:HAS]->(category)
+return r, game, category
+----
+
+//graph_result
+
+== Multiplayer Category
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_categories_multi.csv"
+as rels
+match (game:Game {AAAName: rels.name}), (category:Category {Category: rels.category})
+create (game)-[r:HAS]->(category)
+return r, game, category
+----
+
+//graph_result
+
+== Single Player Category
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_categories_SP.csv"
+as rels
+match (game:Game {AAAName: rels.name}), (category:Category {Category: rels.category})
+create (game)-[r:HAS]->(category)
+return r, game, category
+----
+
+//graph_result
+
+== VR Support
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_categories_VR.csv"
+as rels
+match (game:Game {AAAName: rels.name}), (category:Category {Category: rels.category})
+create (game)-[r:HAS]->(category)
+return r, game, category
+----
+
+//graph_result
+
+= Creating Platfrom Relationship
+
+== Windows
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_platform_Windows.csv"
+as rels
+match (game:Game {Name: rels.name}), (plaftform:Platform {game_platform: rels.Windows})
+create (game)<-[:SUPPORTS]-(plaftform)
+return game, plaftform
+----
+
+== Linux
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_platform_Linux.csv"
+as rels
+match (game:Game {Name: rels.name}), (plaftform:Platform {game_platform: rels.Linux})
+create (game)<-[:SUPPORTS]-(plaftform)
+return game, plaftform
+----
+
+== Mac
+[source,cypher]
+----
+load csv with headers from
+"https://gist.githubusercontent.com/Nunoo/d201fbe211743519998f67a480e0c98d/raw/d42a700be6fa23c4eb71dd5ad732e0594fc7ccd3/games_platform_Mac.csv"
+as rels
+match (game:Game {Name: rels.name}), (plaftform:Platform {game_platform: rels.Mac})
+create (game)<-[:SUPPORTS]-(plaftform)
+return game, plaftform
+----
+
+= Creating Genere Relationship
+
+== 
