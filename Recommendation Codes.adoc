@@ -1,0 +1,18 @@
+:neo4j-version: 3.2.1
+:author: Noor ul ain Arain
+:twitter: @_Nunoo_
+:style: red:Person(name)
+
+= Recommendation Codes
+
+== Recommendation by Basic Search and matching genre of search results
+
+match (g:Game) 
+Where g.Name=~'(?i).*Skyrim.*' 
+WITH g Match (g)-[r:IS]->(b:Genre) 
+WITH b Match (n:Game)-[:IS]->(b) 
+WITH Distinct n ,b
+Order by n.Recomm_Count Desc  
+Limit 10
+return (n)-[:IS]->(b)
+
