@@ -7,6 +7,17 @@
 
 == Recommendation by Basic Search and matching genre of search results
 
+////
+2//get games that starts with letter B (ignore case)
+3//and get all the genres that matches the list of games starting with letter b 
+4//Now match all the games that match those genres
+5//return distinct title of games (a game can be linked to two or more genre) 
+6//order them as highest in recommendation number
+7// limit the result to top 10
+////
+
+[source, cypher]
+----
 match (g:Game) 
 Where g.Name=~'(?i).*Skyrim.*' 
 WITH g Match (g)-[r:IS]->(b:Genre) 
@@ -15,4 +26,6 @@ WITH Distinct n ,b
 Order by n.Recomm_Count Desc  
 Limit 10
 return (n)-[:IS]->(b)
+----
 
+== Recommedation by 
