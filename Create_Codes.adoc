@@ -1,3 +1,9 @@
+:neo4j-version: 3.2.1
+:author: Noor ul ain Arain
+:twitter: @_Nunoo_
+:style: red:Person(name)
+
+
 = Create Script
 
 == Yes I have set a property as AAAName because it displays About_Text property instead of Name , it's alphabetical
